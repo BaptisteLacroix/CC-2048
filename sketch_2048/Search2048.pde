@@ -45,8 +45,32 @@ void draw() {
 
 
 void keyPressed() {
-
+  println(key);
+  println(released);
   if (released) {
+    switch(Character.toLowerCase(key)) {
+      case 'z':
+        p.moveDirection.y = -1;
+        p.moveDirection.x = 0;
+        p.moveTiles();
+        break;
+      case 'q':
+        p.moveDirection.x = -1;
+        p.moveDirection.y = 0;
+        p.moveTiles();
+        break;
+      case 'd':
+        p.moveDirection.x = 1;
+        p.moveDirection.y = 0;
+        p.moveTiles();
+        break;
+      case 's':
+        p.moveDirection.y = 1;
+        p.moveDirection.x = 0;
+        p.moveTiles();
+        break;
+    }
+    
   }
 }
 
@@ -56,8 +80,5 @@ void keyReleased(){
 }
 
 boolean compareVec(PVector p1, PVector p2) {
-  if (p1.x == p2.x && p1.y == p2.y) {
-    return true;
-  }
-  return false;
+  return (p1.x == p2.x && p1.y == p2.y);
 }

@@ -1,4 +1,5 @@
 class Tile {
+  // attributes
   int value;
   PVector position;
   PVector pixelPos;//top left
@@ -11,14 +12,29 @@ class Tile {
 
 
   boolean deathOnImpact =false;
+  
+  HashMap<Integer, Integer> colorMap;
 
   Tile(int x, int y) {
+    // constructor
     if (random(1)< 0.1) {
       value = 4;
     } else {
       value =2;
     }
-
+    
+    colorMap = new HashMap<Integer, Integer>();
+    colorMap.put(2,#eee4da);
+    colorMap.put(4,#ede0c8);
+    colorMap.put(8,#f2b179);
+    colorMap.put(16,#f59563);
+    colorMap.put(32,#f67c5f);
+    colorMap.put(64,#f65e3b);
+    colorMap.put(128,#edcf72);
+    colorMap.put(256,#edcc61);
+    colorMap.put(512,#edc850);
+    colorMap.put(1024,#C6754A);
+    
     position = new PVector(x, y);
     positionTo = new PVector(x, y);
 
@@ -28,6 +44,7 @@ class Tile {
     setColour();
   }
 
+  // method
   void show() {
     if (!deathOnImpact || moving) {
       fill(colour);
@@ -40,7 +57,7 @@ class Tile {
       }
       textAlign(CENTER, CENTER);
       textSize(50);
-      text(value = 2, pixelPos.x+100, pixelPos.y+100);
+      text(value, pixelPos.x+100, pixelPos.y+100);
     }
   }
 
@@ -70,7 +87,7 @@ class Tile {
   }
   
   void setColour() {
-
+    colour = colorMap.get(value);
   }
 
   Tile clone() {
